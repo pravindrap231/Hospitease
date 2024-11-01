@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+    --color-primary: #7380ec;
+    --color-danger:#ff7782;
+    --color-success:#41f1b6;
+    --color-warning:#ffbb55;
+    --color-white:#fff;
+    --color-info-dark:#7d8da1;
+    --color-info-light:#dce1eb;
+    --color-dark:#363949;
+    --color-light:rgba(132,139,200,0.18);
+    --color-primary-variant:#111e88;
+    --color-dark-variant:#677483;
+    --color-background:#f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1:0.4rem;
+    --border-radius-2:0.8rem;
+    --border-radius-3:1.2rem;
+
+    --card-padding:1.8rem;
+    --padding-1:1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-dark);
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    transition: color var(--transition-speed);
+}
+
+h1:hover {
+    color: var(--color-primary-variant);
+}
+
+form {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2rem 3.5rem var(--color-light);
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-variant);
+}
+
+form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-info-light);
+    border-radius: var(--border-radius-2);
+    background-color: var(--color-info-light);
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+form input:focus {
+    background-color: var(--color-white);
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+form button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1rem;
+    border: none;
+    border-radius: var(--border-radius-2);
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+form button:hover {
+    background-color: var(--color-primary-variant);
+    transform: translateY(-3px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+}
+
+table thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+table th, table td {
+    padding: 1rem;
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--color-info-light);
+}
+
+table tr:hover {
+    background-color: var(--color-light);
+}
+
+table button {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+table button:hover {
+    background-color: var(--color-danger-dark);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+table {
+    animation: fadeIn 0.5s ease-out;
+}
+

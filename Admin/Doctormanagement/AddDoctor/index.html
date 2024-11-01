@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Doctor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Add Doctor</h1>
+    <form id="doctorForm">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" required><br><br>
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" required><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Doctor List</h2>
+    <table id="doctorTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Contact</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- New rows will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('doctorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const specialization = document.getElementById('specialization').value;
+            const contact = document.getElementById('contact').value;
+            const age = document.getElementById('age').value;
+
+            const table = document.getElementById('doctorTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+
+            cell1.textContent = id;
+            cell2.textContent = name;
+            cell3.textContent = specialization;
+            cell4.textContent = contact;
+            cell5.textContent = age;
+
+            document.getElementById('doctorForm').reset();
+        });
+    </script>
+</body>
+</html>
