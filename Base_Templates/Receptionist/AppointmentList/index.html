@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div id="full-screen-container" class="hidden">
+        <div class="main-container">
+            <div class="close-btn">
+                <button id="close-btn"><img src="./assets/icons8-cross-50.png" alt="close icon"></button>
+            </div>
+            <div class="patient-details">
+                <div class="left-container">
+                    <div class="patient-image">
+                        <img src="./assets/profile.jpeg" alt="profile image">
+                    </div>
+                    <div class="patient-name">
+                        <span>Patient Name</span>
+                        <h1>Anna Harvey</h1>
+                    </div>
+                    <div class="patient-id">
+                        <span>Patient Id</span>
+                        <h1>123234</h1>
+                    </div>
+                    <div class="patient-gender">
+                        <span>Patient Gender</span>
+                        <h1>Male</h1>
+                    </div>
+                    <div class="patient-dob">
+                        <span>Date of Birth</span>
+                        <h1>12/3/23</h1>
+                    </div>
+                    
+                </div>
+                <div class="right-container">
+                    <div class="appointment-date">
+                        <span>Appointment Date</span>
+                        <h1>01/01/2021</h1>
+                    </div>
+                    <div class="doctor-name">
+                        <span>Doctor Name</span>
+                        <h1>Name</h1>
+                    </div>
+                    <div class="time-slot">
+                        <span>Time-Slot</span>
+                        <h1>10:00 AM</h1>
+                    </div>
+                    <div class="Description">
+                        <span>Description</span>
+                        <h1>1234 Main Street, Anytown, USA 12345, Apartment 101, with a very long address that goes on and on 
+                            
+                        </h1>
+                    </div>
+                    <div class="medical-history">
+                        <!-- <div class="title">Medical History</div>
+                        <div id="medical-history-dropdown" class="dropdown-icon">
+                            <img id="dropdown-icon"  src="./assets/icons8-dropdown-30.png" alt="dropdown icon">
+                        </div> -->
+                        <button id="medical-history-btn" onclick="toggleDropdown()">
+                            <div id="dropdown-icon" class="dropdown-icon">
+                                <img src="./assets/icons8-dropdown-30.png" alt="dropdown icon">
+                            </div>
+                            <span>Medical History</span>
+                        </button>
+                        
+                    </div>
+                    <div class="dropdown-content">
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                            <div class="item">Item 1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="root" class = "main-container">
+        <div class="navbar">
+            <div class="sidebar">
+                <div class="logo_details">
+                    <i class="bx bxl-audible icon"></i>
+                    <div class="logo_name">Hospitease</div>
+                    <i class="bx bx-menu" id="btn" onclick="isSmallScreen()"></i>
+                </div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="../ReceptionistDashBoard/index.html">
+                            <i class="bx bx-grid-alt"></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <span class="tooltip">Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="../Patients/index.html">
+                            <i class="bx bx-user"></i>
+                            <span class="link_name">Patient</span>
+                        </a>
+                        <span class="tooltip">Patient</span>
+                    </li>
+                    <li>
+                        <a href="../AppointmentList/index.html">
+                            <i class="bx bx-calendar"></i> <!-- Changed to bx bx-calendar for Appointment -->
+                            <span class="link_name">Appointment</span>
+                        </a>
+                        <span class="tooltip">Appointment</span>
+                    </li>
+                    <li>  
+                        <a href="../Stocks/index.html">  
+                            <i class="bx bx-capsule"></i>  
+                            <span class="link_name">Stocks</span>  
+                        </a>  
+                        <span class="tooltip">Stocks</span>  
+                    </li>
+                    <li class="profile">
+                        <div class="profile_details">
+                            <img src="./assets/profile.jpeg" alt="profile image">
+                            <div class="profile_content">
+                                <div class="name">Anna John</div>
+                                <div class="designation">Admin</div>
+                            </div>
+                        </div>
+                        <i class="bx bx-log-out" id="log_out"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class = "content">
+            <div class="navbar-opener">
+                <button id="open-btn" onclick="toggleSmallScreenSidebar()">
+                    <i class="bx bx-menu" id="btn"></i>
+                </button>
+            </div>
+            <div class="patient-table-container">
+                <main class="table" id="patients_table">
+                    <section class="table__header">
+                        <h1>Appointments</h1>
+                        <div class="input-group">
+                            <input type="search" placeholder="Search Patients...">
+                            <img src="./assets/search.png" alt="">
+                        </div>
+                        <div class="export__file">
+                            <input type="date" id="date" value="" />
+                        </div>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient Id<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Patient Name<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Check In Date<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Disease<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Status<span class="icon-arrow">&UpArrow;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table__innerBody">
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Flu</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>COVID-19</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>Diabetes</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>Hypertension</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Asthma</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Flu</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>COVID-19</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>Diabetes</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>Hypertension</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Asthma</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Flu</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>COVID-19</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>Diabetes</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>Hypertension</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Asthma</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Flu</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>COVID-19</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>Diabetes</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>Hypertension</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Asthma</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="table__footer">
+                        <div class="go-back-btn">
+                            <button class="btn">&#x3C;</button>
+                        </div>
+                        <div class="page-count">
+                            <button class="btn">1</button>
+                        </div>
+                        <div class="page-count">
+                            <button class="btn">2</button>
+                        </div>
+                        <div class="next-page-btn">
+                            <button class="btn">&#x3E;</button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./js/script.js"></script>  
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        });  
+
+
+        window.addEventListener('resize', handleResize);
+        document.addEventListener('DOMContentLoaded', handleResize);
+
+        function handleResize() {
+        const leftContainer = document.querySelector('.left-container');
+
+        if (window.innerWidth > 850) {
+            leftContainer.style.position = 'sticky';
+            leftContainer.style.top = '0';
+        } else {
+            leftContainer.style.position = 'static'; // or 'relative' if you prefer
+        }
+        }
+
+        
+
+        function toggleSmallScreenSidebar() {
+            const navbar = document.querySelector('.navbar');
+            const sidebar = document.querySelector('.sidebar');
+
+            if (navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            } else {
+                navbar.classList.add('small-screen');
+                sidebar.classList.add('open');
+            }
+            
+        }
+
+        function isSmallScreen() {
+            const navbar = document.querySelector('.navbar');
+
+            if (window.innerWidth <= 500 && navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            }
+        }
+
+
+        // dropdown Menu
+        const medicalHistoryDropdown = document.getElementById('medical-history-btn');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownIcon = document.getElementById('dropdown-icon');
+
+        function toggleDropdown() {
+        dropdownContent.classList.toggle('visible');
+
+        // Change the icon image
+        const iconImg = dropdownIcon.querySelector('img');
+        if (dropdownContent.classList.contains('visible')) {
+            iconImg.src = './assets/icons8-collapse-24.png';
+        } else {
+            iconImg.src = './assets/icons8-dropdown-30.png';
+        }
+        }
+
+        // Optional: Initial setup to hide dropdown content
+        dropdownContent.classList.remove('visible');
+
+    </script>
+</body>
+</html>

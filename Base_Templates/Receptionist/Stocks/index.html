@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+    <div id = "preloader"></div>
+
+    <div id="root" class = "main-container">
+        <div class="navbar">
+            <div class="sidebar">
+                <div class="logo_details">
+                    <i class="bx bxl-audible icon"></i>
+                    <div class="logo_name">Hospitease</div>
+                    <i class="bx bx-menu" id="btn" onclick="isSmallScreen()"></i>
+                </div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="../ReceptionistDashBoard/index.html">
+                            <i class="bx bx-grid-alt"></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <span class="tooltip">Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="../Patients/index.html">
+                            <i class="bx bx-user"></i>
+                            <span class="link_name">Patient</span>
+                        </a>
+                        <span class="tooltip">Patient</span>
+                    </li>
+                    <li>
+                        <a href="../AppointmentList/index.html">
+                            <i class="bx bx-calendar"></i> <!-- Changed to bx bx-calendar for Appointment -->
+                            <span class="link_name">Appointment</span>
+                        </a>
+                        <span class="tooltip">Appointment</span>
+                    </li>
+                    <li>  
+                        <a href="../Stocks/index.html">  
+                            <i class="bx bx-capsule"></i>  
+                            <span class="link_name">Stocks</span>  
+                        </a>  
+                        <span class="tooltip">Stocks</span>  
+                    </li>
+                    <li class="profile">
+                        <div class="profile_details">
+                            <img src="./assets/profile.jpeg" alt="profile image">
+                            <div class="profile_content">
+                                <div class="name">Anna John</div>
+                                <div class="designation">Admin</div>
+                            </div>
+                        </div>
+                        <i class="bx bx-log-out" id="log_out"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class = "content">  
+            <div class="navbar-opener">
+                <button id="open-btn" onclick="toggleSmallScreenSidebar()">
+                    <i class="bx bx-menu" id="btn"></i>
+                </button>
+            </div>         
+            <div class="patient-table-container">
+                <main class="table" id="patients_table">
+                    <section class="table__header">
+                        <h1 class="table__title">Stocks List</h1>
+                        <div class="input-group">
+                            <input type="search" placeholder="Search Patients...">
+                            <img src="./assets/search.png" alt="">
+                        </div>
+                        <div class="export__file">
+                            <!-- <label for="stock-select" class="visually-hidden">Select Stock</label> -->
+                            <select required>
+                                <option value="Stock1">Medicines & Injections</option>
+                                <option value="Stock2">Stock2</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Stock Id<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Stock Name<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Stock Quantity<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <!-- <td><p class="status edit"><button>Edit</button></p></td>
+                                    <td><p class="status delete"><button>Delete</button></p></td> -->
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>                                
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>
+                                        <button class="edit-btn" onclick="window.location.href='EditPage.html'">
+                                            <span class="edit-icon">&#9998;</span>  Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="delete-btn" onclick="showOverlay()">
+                                            <span class="delete-icon">&#128465;</span>  Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="table__footer">
+                        <div class="go-back-btn">
+                            <button class="btn">&#x3C;</button>
+                        </div>
+                        <div class="page-count">
+                            <button class="btn">1</button>
+                        </div>
+                        <div class="page-count">
+                            <button class="btn">2</button>
+                        </div>
+                        <div class="next-page-btn">
+                            <button class="btn">&#x3E;</button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay">
+        <div class="overlay-content">
+            <p>Do you really want to update this stock?</p>
+            <p><strong>Previous stock name</strong> to <strong>new stock name</strong></p>
+            <p><strong>Previous stock quantity</strong> to <strong>new stock quantity</strong></p>
+            <div class="button-container">
+                <button class="yes-btn">Yes</button>
+                <button class="no-btn" onclick="hideOverlay()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+     <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./js/script.js"></script>  
+    <script>
+
+        var loader = document.getElementById("preloader");
+        var root = document.getElementById("root");
+
+        window.addEventListener("load", function() {
+            document.getElementById("overlay").style.display = "none";
+            loader.style.display="none";
+            root.style.display="block";
+        });
+        
+        function showOverlay() {
+            document.getElementById("overlay").style.display = "flex";
+        }
+        
+        function hideOverlay() {
+            document.getElementById("overlay").style.display = "none";
+        }          
+
+        document.getElementById('exportFileBtn').addEventListener('click', function() {
+            const exportOptions = document.querySelector('.export__file-options');
+            exportOptions.style.display = exportOptions.style.display === 'block' ? 'none' : 'block';
+        });
+
+
+        function toggleSmallScreenSidebar() {
+            const navbar = document.querySelector('.navbar');
+            const sidebar = document.querySelector('.sidebar');
+
+            if (navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            } else {
+                navbar.classList.add('small-screen');
+                sidebar.classList.add('open');
+            }
+            
+        }
+
+        function isSmallScreen() {
+            const navbar = document.querySelector('.navbar');
+
+            if (window.innerWidth <= 500 && navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            }
+        }
+
+
+        // dropdown Menu
+        const medicalHistoryDropdown = document.getElementById('medical-history-btn');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownIcon = document.getElementById('dropdown-icon');
+
+        function toggleDropdown() {
+        dropdownContent.classList.toggle('visible');
+
+        // Change the icon image
+        const iconImg = dropdownIcon.querySelector('img');
+        if (dropdownContent.classList.contains('visible')) {
+            iconImg.src = './assets/icons8-collapse-24.png';
+        } else {
+            iconImg.src = './assets/icons8-dropdown-30.png';
+        }
+        }
+
+        // Optional: Initial setup to hide dropdown content
+        dropdownContent.classList.remove('visible');
+
+    </script>
+</body>
+</html>

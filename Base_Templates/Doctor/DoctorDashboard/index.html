@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+<body>
+    <div class = "main-container">
+        <div class="navbar">
+            <div class="sidebar">
+                    <div class="logo_details">
+                        <i class="bx bxl-audible icon"></i>
+                        <div class="logo_name">Hospitease</div>
+                        <i class="bx bx-menu" id="btn" onclick="isSmallScreen()"></i>
+                    </div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="index.html">
+                            <i class="bx bx-grid-alt"></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <span class="tooltip">Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="../Patients/index.html">
+                            <i class="bx bx-user"></i>
+                            <span class="link_name">Patient</span>
+                        </a>
+                        <span class="tooltip">Patient</span>
+                    </li>
+                    <li>
+                        <a href="../AppointmentList/index.html">
+                            <i class="bx bx-calendar"></i> <!-- Changed to bx bx-calendar for Appointment -->
+                            <span class="link_name">Appointment</span>
+                        </a>
+                        <span class="tooltip">Appointment</span>
+                    </li>
+                    <li class="profile">
+                        <div class="profile_details">
+                            <img src="./assets/profile.jpeg" alt="profile image">
+                            <div class="profile_content">
+                                <div class="name">Anna John</div>
+                                <div class="designation">Admin</div>
+                            </div>
+                        </div>
+                        <i class="bx bx-log-out" id="log_out"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class = "content">
+            <div class="navbar-opener">
+                <button id="open-btn" onclick="toggleSmallScreenSidebar()">
+                    <i class="bx bx-menu" id="btn"></i>
+                </button>
+            </div>
+            <div class = "analytics-container">
+                <!-- Patients Container -->
+                <div class = "patients-container c1">
+                    <div class = "first-patient-container">
+                        <div class = "patient-icon">
+                            <div class = "icon-container">
+                                <img src = "./assets/health.png" alt = "logo">
+                            </div>
+                        </div>
+                        <div class = "patient-text">
+                            <span>Patients</span>
+                        </div>
+                    </div>
+                    <div class="second-patient-container">
+                        <div class = "patient-count">
+                            <span>10000</span>
+                        </div>
+                    </div>
+                    <div class="third-patient-container">
+                        <div class = "data-text">
+                            <span>Last 7 days</span>
+                        </div>
+                        <div class = "data-count">
+                            <span><img src="./assets/increase.png" alt="logo"> 7%</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Lab Reports Container -->
+                <div class = "lab-reports-container c1">
+                    <div class = "first-patient-container">
+                        <div class = "patient-icon">
+                            <div class = "icon-container">
+                                <img src = "./assets/medical_sample.png" alt = "logo">
+                            </div>
+                        </div>
+                        <div class = "patient-text">
+                            <span>Lab Reports</span>
+                        </div>
+                    </div>
+                    <div class="second-patient-container">
+                        <div class = "patient-count">
+                            <span>300</span>
+                        </div>
+                    </div>
+                    <div class="third-patient-container">
+                        <div class = "data-text">
+                            <span>Last 7 days</span>
+                        </div>
+                        <div class = "data-count">
+                            <span><img src="./assets/increase.png" alt="logo"> 4%</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Urgent Container -->
+                <div class = "urgent-container c1">
+                    <div class = "first-patient-container">
+                        <div class = "patient-icon">
+                            <div class = "icon-container">
+                                <img src = "./assets/critical_care.png" alt = "logo">
+                            </div>
+                        </div>
+                        <div class = "patient-text">
+                            <span>Urgent</span>
+                        </div>
+                    </div>
+                    <div class="second-patient-container">
+                        <div class = "patient-count">
+                            <span>150</span>
+                        </div>
+                    </div>
+                    <div class="third-patient-container">
+                        <div class = "data-text">
+                            <span>Last 7 days</span>
+                        </div>
+                        <div class = "data-count">
+                            <span><img src="./assets/increase.png" alt="logo"> 10%</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Surgery Container -->
+                <div class = "surgery-container c1">
+                    <div class = "first-patient-container">
+                        <div class = "patient-icon">
+                            <div class = "icon-container">
+                                <img src = "./assets/general_surgery.png" alt = "logo">
+                            </div>
+                        </div>
+                        <div class = "patient-text">
+                            <span>Surgery</span>
+                        </div>
+                    </div>
+                    <div class="second-patient-container">
+                        <div class = "patient-count">
+                            <span>80</span>
+                        </div>
+                    </div>
+                    <div class="third-patient-container">
+                        <div class = "data-text">
+                            <span>Last 7 days</span>
+                        </div>
+                        <div class = "data-count">
+                            <span><img src="./assets/increase.png" alt="logo"> 2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="patient-table-container">
+                <main class="table" id="patients_table">
+                    <section class="table__header">
+                        <h1>Patients List</h1>
+                        <div class="input-group">
+                            <input type="search" placeholder="Search Patients...">
+                            <img src="./assets/search.png" alt="">
+                        </div>
+                        <div class="export__file">
+                            
+                        </div>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient Id<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Patient Name<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Check In Date<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Disease<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Status<span class="icon-arrow">&UpArrow;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Flu</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>COVID-19</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>Diabetes</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>Hypertension</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Asthma</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </section>
+                </main>
+            </div>
+
+            <div class="labReport-table-container">
+                <main class="table" id="labReports_table">
+                    <section class="table__header">
+                        <h1>Lab Reports List</h1>
+                        <div class="input-group">
+                            <input type="search" placeholder="Search Lab Reports...">
+                            <img src="./assets/search.png" alt="">
+                        </div>
+                        <div class="export__file">
+                            
+                        </div>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Report Id<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Patient Name<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Test Date<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Test Type<span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>2024-09-25</td>
+                                    <td>Blood Test</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane Smith</td>
+                                    <td>2024-09-20</td>
+                                    <td>X-Ray</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Michael Brown</td>
+                                    <td>2024-09-22</td>
+                                    <td>MRI</td>
+                                    <td><p class="status admitted">Admitted</p></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Emily Davis</td>
+                                    <td>2024-09-23</td>
+                                    <td>CT Scan</td>
+                                    <td><p class="status discharged">Discharged</p></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>David Wilson</td>
+                                    <td>2024-09-24</td>
+                                    <td>Urine Test</td>
+                                    <td><p class="status pending">Pending</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="./js/script.js"></script>  
+    <script>
+        function toggleSmallScreenSidebar() {
+            const navbar = document.querySelector('.navbar');
+            const sidebar = document.querySelector('.sidebar');
+
+            if (navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            } else {
+                navbar.classList.add('small-screen');
+                sidebar.classList.add('open');
+            }
+            
+        }
+
+        function isSmallScreen() {
+            const navbar = document.querySelector('.navbar');
+
+            if (window.innerWidth <= 500 && navbar.classList.contains('small-screen')) {
+                navbar.classList.remove('small-screen');
+            }
+        }
+    </script>
+</body>
+</html>

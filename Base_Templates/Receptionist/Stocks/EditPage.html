@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Editing a Stock</title>
+</head>
+
+    <body>
+        <div id = "preloader"></div>
+        <section>
+            <form>
+                <h1>Edit a Stock</h1>
+                <div class="inputbox">
+                    <ion-icon name="document-outline"></ion-icon>
+                    <input type="number" readonly>
+                    <label for="">Stock Id</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="clipboard-outline"></ion-icon>
+                    <input type="text" required>
+                    <label for="">Stock Name</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="cube-outline"></ion-icon>
+                    <input type="number" required>
+                    <label for="">Stock Quantity</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="cash-outline"></ion-icon>
+                    <input type="number" required>
+                    <label for="">Amount</label>
+                </div>
+                <button type="button" onclick="showOverlay()">Add</button>
+            </form>
+        </section>
+
+        <div id="overlay">
+            <div class="overlay-content">
+                <p>Do you really want to update this stock?</p>
+                <p><strong>Previous stock name</strong> to <strong>new stock name</strong></p>
+                <p><strong>Previous stock quantity</strong> to <strong>new stock quantity</strong></p>
+                <div class="button-container">
+                    <button class="yes-btn">Yes</button>
+                    <button class="no-btn" onclick="hideOverlay()">No</button>
+                </div>
+            </div>
+        </div>
+        
+    
+
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script src="./js/script2.js"></script>
+        <script>
+            var loader = document.getElementById("preloader");
+    
+            window.addEventListener("load", function() {
+                document.getElementById("overlay").style.display = "none";
+                loader.style.display="none";
+            });
+            
+            function showOverlay() {
+                document.getElementById("overlay").style.display = "flex";
+            }
+            
+            function hideOverlay() {
+                document.getElementById("overlay").style.display = "none";
+            }           
+        </script>
+    </body>
+
+</html>

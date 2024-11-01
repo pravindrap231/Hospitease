@@ -1,0 +1,1292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --color-default:#004f83;
+    --color-second:#0067ac;
+    --color-white:#fff;
+    --color-body:#e4e9f7;
+    --color-light:#e0e0e0;
+}
+
+
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245,246,251,255);
+}
+
+/* Prevent text selection and hide typing cursor outside input elements */
+body {
+    background-color: azure;
+    -webkit-user-select: none;
+    user-select: none; /* Prevent text selection */
+    cursor: default; /* Set default cursor */
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    user-select: text; /* Allow text selection inside input and textarea */
+    cursor: text; /* Show typing cursor only inside input and textarea */
+}
+
+
+.navbar {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 78px; /* Adjust this value as per your layout */
+    height: 100vh; /* Full height to ensure it spans the viewport */
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Shift the content to the right to avoid overlap */
+.content {
+    margin-left: 78px; /* Match this value to the navbar width */
+    background-color: azure;
+}
+
+/* Main container grid adjustment */
+.main-container {
+    display: block; /* Remove grid for this case */
+    background-color: azure;
+    width: 100%;
+    height: 100%;
+}
+
+.right-container {
+    background-color: azure;
+}
+
+.sidebar{
+    min-height: 100vh;
+    width: 78px;
+    padding: 6px 14px;
+    z-index: 99;
+    background-color: var(--color-default);
+    transition: all .5s ease;
+    position: fixed;
+    top:0;
+    left: 0;
+}
+
+.sidebar.open{
+    width: 250px;
+}
+
+.sidebar .logo_details{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sidebar .logo_details .icon{
+    opacity: 0;
+    transition: all 0.5s ease ;
+}
+
+
+
+.sidebar .logo_details .logo_name{
+    color:var(--color-white);
+    font-size: 22px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.sidebar.open .logo_details .icon,
+.sidebar.open .logo_details .logo_name{
+    opacity: 1;
+}
+
+.sidebar .logo_details #btn{
+    position: absolute;
+    top:50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 23px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.sidebar.open .logo_details #btn{
+    text-align: right;
+}
+
+.sidebar i{
+    color:var(--color-white);
+    height: 60px;
+    line-height: 60px;
+    min-width: 50px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.sidebar .nav-list{
+    margin-top: 20px;
+    height: 100%;
+}
+
+.sidebar li{
+    position: relative;
+    margin:8px 0;
+    list-style: none;
+}
+
+.sidebar li .tooltip{
+    position: absolute;
+    top:-20px;
+    left:calc(100% + 15px);
+    z-index: 3;
+    background-color: var(--color-white);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar li:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip{
+    display: none;
+}
+
+
+.sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--color-default);
+    position: relative;
+    transition: all .5s ease;
+    z-index: 12;
+}
+
+.sidebar li a::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    background-color: var(--color-white);
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: left;
+    z-index: -2;
+}
+
+.sidebar li a:hover::after{
+    transform: scaleX(1);
+    color:var(--color-default)
+}
+
+.sidebar li a .link_name{
+    color:var(--color-white);
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar li a:hover .link_name,
+.sidebar li a:hover i{
+    transition: all 0.5s ease;
+    color:var(--color-default)
+}
+
+.sidebar.open li a .link_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar li i{
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.sidebar li.profile{
+    position: fixed;
+    height: 60px;
+    width: 78px;
+    left: 0;
+    bottom:-8px;
+    padding:10px 14px;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+
+.sidebar.open li.profile{
+    width: 250px;
+}
+
+.sidebar .profile .profile_details{
+    display: flex;
+    align-items: center;
+    flex-wrap:  nowrap;
+}
+
+.sidebar li img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .designation{
+    font-size: 15px;
+    font-weight: 400;
+    color:var(--color-white);
+    white-space: nowrap;
+}
+
+.sidebar li.profile .designation{
+    font-size: 12px;
+}
+
+.sidebar .profile #log_out{
+    position: absolute;
+    top:50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: var(--color-second);
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.sidebar.open .profile #log_out{
+    width: 50px;
+    background: none;
+}
+
+/* Add smooth transition */
+.sidebar, .navbar, .content {
+    transition: all 0.4s ease; /* Adjust the duration and easing as needed */
+}
+
+.navbar.open {
+    width: 250px;
+}
+
+.content.onopen {
+    margin-left: 250px;
+}
+
+@media(max-width: 1200px) {
+    .navbar.open {
+        width: 100%;
+        z-index: 100000;
+        background-color: rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}
+
+
+
+
+/* @keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-element {
+    animation: slideDown 0.5s ease-in-out;
+}
+
+.nav-element button {
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.nav-element button:hover,
+.nav-element button.active {
+    background-color: rgba(235, 230, 253, 1);
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, box-shadow 0.3s;
+} */
+
+
+/* @media(max-width: 1190px) {
+    .nav-element button span {
+        display: none;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .navbar {
+        width: 100px;
+    }
+
+    .content {
+        margin-left: 100px;
+    }
+
+    .nav-element  button {
+        justify-content: center;
+        width: 50px;
+    }
+
+    .nav-element button img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 17px;
+    }
+} */
+
+.content .analytics-container {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 200px;
+    margin: 1.5rem;
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+}
+
+.analytics-container .patients-container {
+    background-color: rgba(235, 230, 253, 1);
+    border-radius: 20px;
+    margin-right: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    height: 185px;
+    margin-left: 1.1rem;
+    
+}
+
+.patients-container .first-patient-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.first-patient-container .patient-icon {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.patient-icon .icon-container {
+    background-color: white;
+    width: 45%;
+    height: 75%;
+    border-radius: 40%;
+    background-attachment: fixed;
+}
+
+@media(max-width: 1295px) {
+    .patient-icon .icon-container {
+        width: 55%;
+        height: 60%;
+    }
+}
+
+.first-patient-container .patient-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.second-patient-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.second-patient-container .patient-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.third-patient-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.third-patient-container .data-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.third-patient-container .data-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    gap: 5px; /* Add some space between the image and the text */
+}
+
+.third-patient-container .data-count img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Lab Reports Container */
+.analytics-container .lab-reports-container {
+    background-color: #d0f0f6;
+    border-radius: 20px;
+    margin-right: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    height: 185px;
+}
+
+.lab-reports-container .first-patient-container,
+.urgent-container .first-patient-container,
+.surgery-container .first-patient-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lab-reports-container .second-patient-container,
+.urgent-container .second-patient-container,
+.surgery-container .second-patient-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.lab-reports-container .third-patient-container,
+.urgent-container .third-patient-container,
+.surgery-container .third-patient-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lab-reports-container .patient-icon .icon-container,
+.urgent-container .patient-icon .icon-container,
+.surgery-container .patient-icon .icon-container {
+    background-color: white;
+    width: 45%;
+    height: 75%;
+    border-radius: 40%;
+    background-attachment: fixed;
+}
+
+.lab-reports-container .patient-text,
+.urgent-container .patient-text,
+.surgery-container .patient-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.lab-reports-container .patient-count,
+.urgent-container .patient-count,
+.surgery-container .patient-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.lab-reports-container .data-text,
+.urgent-container .data-text,
+.surgery-container .data-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.lab-reports-container .data-count,
+.urgent-container .data-count,
+.surgery-container .data-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    gap: 5px; /* Add some space between the image and the text */
+}
+
+.lab-reports-container .data-count img,
+.urgent-container .data-count img,
+.surgery-container .data-count img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Urgent Container */
+.analytics-container .urgent-container {
+    background-color: #ddf3df;
+    border-radius: 20px;
+    margin-right: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    height: 185px;
+}
+
+/* Surgery Container */
+.analytics-container .surgery-container {
+    background-color: #fff6ed;
+    border-radius: 20px;
+    margin-right: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    height: 185px;
+}
+
+/* Icon Container - Centering the image */
+.patient-icon .icon-container,
+.lab-reports-container .icon-container,
+.urgent-container .icon-container,
+.surgery-container .icon-container {
+    background-color: white;
+    width: 45%;
+    height: 75%;
+    border-radius: 40%;
+    background-attachment: fixed;
+    
+    /* Centering the image inside the container */
+    display: flex;                  /* Enables flexbox layout */
+    justify-content: center;        /* Horizontally centers the image */
+    align-items: center;            /* Vertically centers the image */
+}
+
+.patient-icon .icon-container img,
+.lab-reports-container .icon-container img,
+.urgent-container .icon-container img,
+.surgery-container .icon-container img {
+    max-width: 100%;                /* Ensure the image scales inside the container */
+    max-height: 100%;               /* Make sure the image doesn't overflow the container */
+}
+
+.analytics-container .patients-container,
+.analytics-container .lab-reports-container,
+.analytics-container .urgent-container,
+.analytics-container .surgery-container {
+    margin-top: 8px;
+}
+
+.lab-reports-container .first-patient-container,
+.urgent-container .first-patient-container,
+.surgery-container .first-patient-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+/* .patients-container .patient-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 85%;
+}
+
+.patient-icon ion-icon {
+    font-size: 2rem;
+}
+
+.patients-container .patient-text {
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 85%;
+    font-size: 15px;
+} */
+
+.first-patient-container .patient-icon .icon-container {
+    background-color: transparent;
+}
+
+.patients-table-container {
+    width: 100%; 
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media print {
+    .table, .table__body {
+    overflow: visible;
+    height: auto !important;
+    width: auto !important;
+    }
+}
+
+/*@page {
+    size: landscape;
+    margin: 0; 
+}*/
+
+main.table {
+    width: 95%; /* Use 100% width of the container */
+    height: auto; /* Allow height to be flexible */
+    background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+    border-radius: 0.8rem;
+    overflow: hidden; /* Prevent inner overflow */
+}
+
+.table__header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__header .input-group {
+    width: 35%;
+    height: 100%;
+    background-color: #fff5;
+    padding: 0 .8rem;
+    border-radius: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .2s;
+}
+
+.table__header .input-group:hover {
+    width: 45%;
+    background-color: #fff8;
+    box-shadow: 0 .1rem .4rem #0002;
+}
+
+.table__header .input-group img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.table__header .input-group input {
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+
+table {
+    width: 100%;
+}
+
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: .5rem;
+    border-radius: 50%;
+
+    vertical-align: middle;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+    transition: .2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+    padding: 0;
+    font: 0 / 0 sans-serif;
+    transition: .2s ease-in-out .5s;
+}
+
+tbody tr.hide td img {
+    width: 0;
+    height: 0;
+    transition: .2s ease-in-out .5s;
+}
+
+.status {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.status.admitted {
+    background-color: #86e49d;
+    color: #006b21;
+}
+
+.status.discharged {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+.status.pending {
+    background-color: #ebc474;
+}
+
+.status.shipped {
+    background-color: #6fcaea;
+}
+
+
+@media (max-width: 1000px) {
+    td:not(:first-of-type) {
+        min-width: 12.1rem;
+    }
+}
+
+thead th span.icon-arrow {
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    border: 1.4px solid transparent;
+    
+    text-align: center;
+    font-size: 1rem;
+    
+    margin-left: .5rem;
+    transition: .2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow{
+    border: 1.4px solid #6c00bd;
+}
+
+thead th:hover {
+    color: #6c00bd;
+}
+
+thead th.active span.icon-arrow{
+    background-color: #6c00bd;
+    color: #fff;
+}
+
+thead th.asc span.icon-arrow{
+    transform: rotate(180deg);
+}
+
+thead th.active,tbody td.active {
+    color: #6c00bd;
+}
+
+.export__file {
+    position: relative;
+}
+
+.export__file .export__file-btn {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 2rem;
+    background: #fff6 url(../assets/export.png) center / 80% no-repeat;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+}
+
+.export__file .export__file-btn:hover { 
+    background-color: #fff;
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.export__file input {
+    display: none;
+}
+
+.export__file .export__file-options {
+    position: absolute;
+    right: 0;
+    
+    width: 12rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    text-align: center;
+
+    opacity: 0;
+    transform: scale(.8);
+    transform-origin: top right;
+    
+    box-shadow: 0 .2rem .5rem #0004;
+    
+    transition: .2s;
+    display: none;
+}
+
+.export__file input:checked + .export__file-options {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 100;
+}
+
+.export__file .export__file-options label{
+    display: block;
+    width: 100%;
+    padding: .6rem 0;
+    background-color: #f2f2f2;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    transition: .2s ease-in-out;
+}
+
+.export__file .export__file-options label:first-of-type{
+    padding: 1rem 0;
+    background-color: #86e49d !important;
+}
+
+.export__file .export__file-options label:hover{
+    transform: scale(1.05);
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.export__file .export__file-options img{
+    width: 2rem;
+    height: auto;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.patients-table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+#patients_table {
+    margin: 2rem;
+}
+
+.labReport-table-container {
+    width: 100%; 
+    max-width: 100%;
+}
+
+#labReports_table {
+    margin: 2rem;
+}
+
+/* @keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.patient-table-container,
+.labReport-table-container {
+    animation: appear 1s linear;
+} */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.patient-table-container,
+.labReport-table-container {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+}
+
+
+
+/* .patient-table-container .patient-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+}
+
+.patient-table .patient-table-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #f2f2f2;
+}
+
+.patient-table .patient-table-body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #f2f2f2;
+} */
+
+.content .navbar-opener {
+    display: none;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 30px;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-opener button {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.navbar-opener button i {
+    font-size: 1.5rem;
+}
+
+
+.navbar-opener {
+    display: none !important;
+}
+
+
+@media (max-width: 500px) {
+    .navbar-opener {
+        display: block !important;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .navbar-opener {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .navbar {
+        width: 100%;
+        z-index: 10000;
+    }
+    
+    .sidebar.open{
+        width: 100%;
+    }
+}
+
+.small-screen {
+    display: block;
+}
+
+@media (max-width: 850px) {
+    .main-container .patient-details {
+      display: flex;
+      flex-direction: column; /* Stack the containers vertically */
+      overflow: auto; /* Enable scrolling */
+    }
+
+    .left-container { 
+        min-height: 650px;
+    }
+
+    .right-container {
+        min-height: 650px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right-container .dropdown-content {
+        max-height: 100px;
+    }
+}
+
+
+/* Adjust layout for screen widths 980px or less */
+@media (max-width: 980px) {
+    .content .analytics-container {
+        grid-template-columns: 1fr 1fr;  /* Change to a 2x2 grid */
+        grid-gap: 20px;  /* Add some space between the items */
+        height: auto;  /* Let the height adjust automatically */
+    }
+
+    /* Custom spacing for each container */
+
+    /* Patients container: Add space from the left */
+    .analytics-container .patients-container {
+        height: auto;
+        margin-left: 20px;  /* Space from the left */
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    /* Lab Reports container: Add space from the right */
+    .analytics-container .lab-reports-container {
+        height: auto;
+        margin-right: 20px;  /* Space from the right */
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    /* Urgent container: Add space from the left and bottom */
+    .analytics-container .urgent-container {
+        height: auto;
+        margin-left: 20px;  /* Space from the left */
+        margin-bottom: 20px;  /* Space from the bottom */
+        margin-right: 0;
+    }
+
+    /* Surgery container: Add space from the right and bottom */
+    .analytics-container .surgery-container {
+        height: auto;
+        margin-right: 20px;  /* Space from the right */
+        margin-bottom: 20px;  /* Space from the bottom */
+        margin-left: 0;
+    }
+
+    /* Other style adjustments for smaller screens */
+    .patients-container .first-patient-container,
+    .lab-reports-container .first-patient-container,
+    .urgent-container .first-patient-container,
+    .surgery-container .first-patient-container {
+        grid-template-columns: 1fr 1fr; /* Keep inner layout consistent */
+    }
+
+    .first-patient-container .patient-icon .icon-container,
+    .lab-reports-container .icon-container,
+    .urgent-container .icon-container,
+    .surgery-container .icon-container {
+        width: 55%;  /* Adjust icon size for small screens */
+        height: 60%;
+    }
+}
+
+
+/* Existing media queries for 980px remain unchanged */
+
+/* Adjust layout for screen widths 580px or less */
+@media (max-width: 580px) {
+    .content .analytics-container {
+        grid-template-columns: 1fr;  /* Switch to a single column layout */
+        grid-gap: 20px;  /* Keep space between items */
+        height: auto;  /* Let height adjust automatically */
+    }
+
+    /* Reset custom spacing for each container */
+
+    /* Patients container: Full width with margin */
+    .analytics-container .patients-container {
+        height: auto;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    /* Lab Reports container: Full width */
+    .analytics-container .lab-reports-container {
+        height: auto;
+        margin-left: 20px;  /* Remove left margin */
+        margin-right: 20px;  /* Remove right margin */
+    }
+
+    /* Urgent container: Full width */
+    .analytics-container .urgent-container {
+        height: auto;
+        margin-left: 20px;  /* Remove left margin */
+        margin-right: 20px;  /* Remove right margin */
+    }
+
+    /* Surgery container: Full width */
+    .analytics-container .surgery-container {
+        height: auto;
+        margin-left: 20px;  /* Remove left margin */
+        margin-right: 20px;  /* Remove right margin */
+    }
+
+    /* Adjustments for any inner elements */
+    .patients-container .first-patient-container,
+    .lab-reports-container .first-patient-container,
+    .urgent-container .first-patient-container,
+    .surgery-container .first-patient-container {
+        grid-template-columns: 1fr 1fr; /* Inner content remains the same */
+    }
+
+    .first-patient-container .patient-icon .icon-container,
+    .lab-reports-container .icon-container,
+    .urgent-container .icon-container,
+    .surgery-container .icon-container {
+        width: 60%;  /* Slightly adjust icon size */
+        height: 50%;
+    }
+}
+
+/* @keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.analytics-container,
+.patients-table-container,
+.lab-reports-container {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 20%;
+} */
